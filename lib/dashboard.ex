@@ -1,5 +1,9 @@
 defmodule Dashboard do
+  @moduledoc """
+  Real time classroom dashboard.
+  """
   use Application
+  alias Dashboard.Endpoint
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
@@ -25,7 +29,7 @@ defmodule Dashboard do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    Dashboard.Endpoint.config_change(changed, removed)
+    Endpoint.config_change(changed, removed)
     :ok
   end
 end

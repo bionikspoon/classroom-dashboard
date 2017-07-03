@@ -1,4 +1,7 @@
 defmodule Dashboard.User do
+  @moduledoc """
+  User model.
+  """
   use Dashboard.Web, :model
 
   @primary_key {:id, :binary_id, autogenerate: false}
