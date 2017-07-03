@@ -17,9 +17,18 @@ defmodule Dashboard.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {Dashboard, []},
-     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_ecto]]
+    [
+      mod: {Dashboard, []},
+      applications: [
+        :cowboy,
+        :faker,
+        :gettext,
+        :logger,
+        :phoenix, 
+        :phoenix_ecto,
+        :phoenix_pubsub,
+      ]
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,6 +46,7 @@ defmodule Dashboard.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix, "~> 1.2.4"},
       {:rethinkdb_ecto, "~> 0.7.0"},
+      {:faker, "~> 0.8.0"}
    ]
   end
 

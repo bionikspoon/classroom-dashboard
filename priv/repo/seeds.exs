@@ -9,3 +9,14 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias Dashboard.User
+alias Dashboard.Repo
+alias Faker.Name
+
+for _ <- 1..50 do
+  Repo.insert! %User{
+    first_name: Name.first_name(),
+    last_name: Name.last_name(),
+  }
+end

@@ -7,5 +7,7 @@ defmodule Dashboard.Router do
 
   scope "/api", Dashboard do
     pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
   end
 end
