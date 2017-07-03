@@ -24,7 +24,7 @@ defmodule Dashboard.Mixfile do
         :faker,
         :gettext,
         :logger,
-        :phoenix, 
+        :phoenix,
         :phoenix_ecto,
         :phoenix_pubsub,
       ]
@@ -41,12 +41,14 @@ defmodule Dashboard.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0"},
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:faker, "~> 0.8.0"},
       {:gettext, "~> 0.11"},
+      {:phoenix, "~> 1.2.4"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix, "~> 1.2.4"},
+      {:rethinkdb, "~> 0.4.0"},
       {:rethinkdb_ecto, "~> 0.7.0"},
-      {:faker, "~> 0.8.0"}
    ]
   end
 

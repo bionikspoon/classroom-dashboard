@@ -14,9 +14,13 @@ defmodule Dashboard.User do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(struct, params \\ %{}) do
-    struct
+  def changeset(user, params \\ %{}) do
+    user
     |> cast(params, [:first_name, :last_name])
     |> validate_required([:first_name, :last_name])
+  end
+
+  def full_name(%Dashboard.User{first_name: first_name, last_name: last_name}) do
+    first_name <> " " <> last_name
   end
 end
