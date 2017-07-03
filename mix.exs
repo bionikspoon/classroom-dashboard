@@ -3,7 +3,7 @@ defmodule Dashboard.Mixfile do
 
   def project do
     [app: :dashboard,
-     version: "0.0.1",
+     version: "0.0.0",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -19,7 +19,7 @@ defmodule Dashboard.Mixfile do
   def application do
     [mod: {Dashboard, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -30,12 +30,14 @@ defmodule Dashboard.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.4"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
-     {:postgrex, ">= 0.0.0"},
-     {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"}]
+    [
+      {:cowboy, "~> 1.0"},
+      {:gettext, "~> 0.11"},
+      {:phoenix_ecto, "~> 3.0"},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix, "~> 1.2.4"},
+      {:rethinkdb_ecto, "~> 0.7.0"},
+   ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

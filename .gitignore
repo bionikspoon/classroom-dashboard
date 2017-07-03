@@ -14,3 +14,18 @@ erl_crash.dump
 # secrets file as long as you replace its contents by environment
 # variables.
 /config/prod.secret.exs
+
+# Distribution
+build/
+
+# elm-package generated files
+elm-stuff
+
+# elm-repl generated files
+repl-temp-*
+
+# Dependency directories
+node_modules
+
+# Desktop Services Store on macOS
+.DS_Store
