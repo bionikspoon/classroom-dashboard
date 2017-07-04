@@ -1,0 +1,12 @@
+{
+  "name": "dashboard",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:bionikspoon/classroom-dashboard.git",
+  "author": "Manu Phatak <manu@thinkcerca.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ace-css": "^1.1.0",
+    "normalize.css": "^7.0.0"
+  }
+}

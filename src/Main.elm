@@ -1,32 +1,55 @@
 module Main exposing (..)
 
-import Html exposing (Html, text, div, img)
-import Html.Attributes exposing (src)
+import Html exposing (Html, div)
+import Http
+import Json.Decode exposing (Decoder, field, list, string)
+import Json.Decode.Pipeline exposing (decode, required)
+import Model exposing (Model, User, initialModel)
+import Msgs exposing (Msg(..))
+import RemoteData
+import Users.List
 
 
----- MODEL ----
+getUsers : Cmd Msg
+getUsers =
+    Http.get "/api/users/" decodeUsers
+        |> RemoteData.sendRequest
+        |> Cmd.map UsersResponse
 
 
-type alias Model =
-    {}
+decodeUsers : Decoder (List User)
+decodeUsers =
+    field "data" (list decodeUser)
+
+
+decodeUser : Decoder User
+decodeUser =
+    decode User
+        |> required "id" string
+        |> required "full_name" string
+
+
+
+---- INIT ----
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    ( initialModel, getUsers )
 
 
 
 ---- UPDATE ----
 
 
-type Msg
-    = NoOp
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
+        UsersResponse users ->
+            ( { model | users = users }, Cmd.none )
 
 
 
@@ -36,9 +59,7 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ img [ src "/logo.svg" ] []
-        , div [] [ text "Your Elm App is working!" ]
-        ]
+        [ Users.List.view model ]
 
 
 
