@@ -47,6 +47,7 @@ defmodule Dashboard.Mixfile do
       {:phoenix, "~> 1.2.4"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_pubsub, "~> 1.0"},
+      {:proper_case, "~> 1.0"},
       {:rethinkdb, "~> 0.4.0"},
       {:rethinkdb_ecto, "~> 0.7.0"},
    ]

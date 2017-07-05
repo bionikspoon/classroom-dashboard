@@ -1,46 +1,40 @@
-module Users.List exposing (..)
+module Users.List exposing (view)
 
-import Html exposing (..)
-import Html.Attributes exposing (..)
+import Components.Nav
+import Html exposing (Html, div, iframe, text)
+import Html.Attributes exposing (class, srcdoc, style)
 import Html.Keyed
-import Model exposing (Model, User)
-import Msgs exposing (..)
-import RemoteData exposing (RemoteData(..), WebData)
+import Http
+import Model exposing (User)
+import Msgs exposing (Msg)
+import RemoteData exposing (WebData)
 
 
-view : Model -> Html Msg
-view model =
+view : WebData (List User) -> Html Msg
+view response =
     div []
-        [ nav
-        , maybeUsers model.users
+        [ Components.Nav.view "Users"
+        , maybeUsersList response
         ]
 
 
-nav : Html Msg
-nav =
-    div [ class "clearfix mb2 white bg-navy" ]
-        [ div [ class "left p2" ] [ text "Users" ] ]
-
-
-maybeUsers : WebData (List User) -> Html Msg
-maybeUsers maybeUsers =
-    case maybeUsers of
-        NotAsked ->
+maybeUsersList : WebData (List User) -> Html Msg
+maybeUsersList response =
+    case response of
+        RemoteData.NotAsked ->
             text ""
 
-        Loading ->
+        RemoteData.Loading ->
             text "loading"
 
-        Failure error ->
-            text ("Error: " ++ toString error)
+        RemoteData.Failure (Http.BadStatus error) ->
+            iframe [ class "border-none overflow-auto absolute top-0 left-0 col-12", srcdoc error.body ] []
 
-        Success users ->
-            viewUsers users
+        RemoteData.Failure error ->
+            text (toString error)
 
-
-viewUsers : List User -> Html Msg
-viewUsers users =
-    Html.Keyed.node "section" [] (List.map userRow users)
+        RemoteData.Success users ->
+            Html.Keyed.node "section" [] (List.map userRow users)
 
 
 userRow : User -> ( String, Html Msg )

@@ -20,5 +20,5 @@ type alias Model =
 
 initialModel : Model
 initialModel =
-    { users = RemoteData.Loading
+    { users = RemoteData.NotAsked
     }

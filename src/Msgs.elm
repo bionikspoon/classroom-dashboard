@@ -1,7 +1,7 @@
-module Msgs exposing (..)
+module Msgs exposing (Msg(..))
 
+import Model exposing (User)
 import RemoteData exposing (WebData)
-import Model exposing (..)
 
 
 type Msg
