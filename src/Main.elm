@@ -1,21 +1,22 @@
 module Main exposing (main)
 
 import Commands exposing (getUsers)
-import Html exposing (Html)
 import Model exposing (Model, initialModel)
 import Msgs exposing (Msg)
+import Navigation exposing (Location)
+import Routing exposing (route)
 import Update exposing (update)
 import View exposing (view)
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( initialModel, getUsers )
+init : Location -> ( Model, Cmd Msg )
+init location =
+    ( initialModel <| route location, getUsers )
 
 
 main : Program Never Model Msg
 main =
-    Html.program
+    Navigation.program Msgs.UrlChange
         { view = view
         , init = init
         , update = update

@@ -3,6 +3,13 @@ module Model exposing (..)
 import RemoteData exposing (WebData)
 
 
+type Route
+    = NotFoundRoute
+    | HomeRoute
+    | UsersRoute
+    | UserRoute PrimaryKey
+
+
 type alias PrimaryKey =
     String
 
@@ -14,11 +21,13 @@ type alias User =
 
 
 type alias Model =
-    { users : WebData (List User)
+    { route : Route
+    , users : WebData (List User)
     }
 
 
-initialModel : Model
-initialModel =
-    { users = RemoteData.NotAsked
+initialModel : Route -> Model
+initialModel route =
+    { route = route
+    , users = RemoteData.NotAsked
     }

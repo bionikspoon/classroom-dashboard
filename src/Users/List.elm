@@ -28,7 +28,7 @@ maybeUsersList response =
             text "loading"
 
         RemoteData.Failure (Http.BadStatus error) ->
-            iframe [ class "border-none overflow-auto absolute top-0 left-0 col-12", srcdoc error.body ] []
+            iframe [ class "border-none overflow-auto absolute top-0 left-0 col-12 bg-lighten-4", srcdoc error.body ] []
 
         RemoteData.Failure error ->
             text (toString error)
